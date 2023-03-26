@@ -1,0 +1,55 @@
+{
+  "name": "@snailycad/types",
+  "version": "1.52.0",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    },
+    "./api": {
+      "require": "./dist/api.js",
+      "import": "./dist/api.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "typesVersions": {
+    "*": {
+      "api": [
+        "dist/api.d.ts"
+      ]
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "yarn workspace @snailycad/api generate && yarn tsup",
+    "watch": "yarn tsup --watch --silent=false",
+    "typecheck": "yarn workspace @snailycad/api generate && yarn tsc --noEmit"
+  },
+  "devDependencies": {
+    "@snailycad/permissions": "1.52.0",
+    "discord-api-types": "0.37.36",
+    "tsup": "^6.6.3",
+    "typescript": "^5.0.2"
+  },
+  "tsup": {
+    "entry": [
+      "./src/**/*.ts"
+    ],
+    "dts": true,
+    "bundle": false,
+    "platform": "node",
+    "target": "node16",
+    "silent": true,
+    "treeshake": true,
+    "format": [
+      "cjs",
+      "esm"
+    ]
+  },
+  "sideEffects": false
+}

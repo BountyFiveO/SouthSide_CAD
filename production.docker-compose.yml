@@ -1,0 +1,58 @@
+version: "3.9"
+
+services:
+  postgres:
+    container_name: "snaily-cad-postgres"
+    image: postgres:latest
+    env_file:
+      - .env
+    ports:
+      - "5433:5432"
+    networks:
+      - cad_web
+    volumes:
+      - ./.data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  api:
+    container_name: "snaily-cad-api"
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - BUILD_CONTEXT=api
+    ports:
+      - "${PORT_API}:${PORT_API}"
+    expose:
+      - ${PORT_API}
+    depends_on:
+      - postgres
+    networks:
+      - cad_web
+    restart: always
+
+  client:
+    container_name: "snaily-cad-client"
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - BUILD_CONTEXT=client
+
+    ports:
+      - "${PORT_CLIENT}:${PORT_CLIENT}"
+    expose:
+      - ${PORT_CLIENT}
+    env_file:
+      - .env
+    depends_on:
+      - api
+    networks:
+      - cad_web
+    restart: always
+
+networks:
+  cad_web:
+    external: true

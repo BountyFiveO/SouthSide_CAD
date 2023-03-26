@@ -1,0 +1,57 @@
+{
+  "name": "@snailycad/permissions",
+  "version": "1.52.0",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    },
+    "./permissions": {
+      "require": "./dist/permissions.js",
+      "import": "./dist/permissions.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "yarn tsup",
+    "watch": "yarn tsup --watch --silent=false",
+    "typecheck": "yarn tsc --noEmit",
+    "test:watch": "yarn vitest --watch",
+    "test": "yarn vitest run"
+  },
+  "devDependencies": {
+    "tsup": "^6.6.3",
+    "typescript": "^5.0.2",
+    "vite": "^4.2.0",
+    "vitest": "^0.29.3"
+  },
+  "tsup": {
+    "entry": [
+      "src/**/*.ts"
+    ],
+    "dts": true,
+    "bundle": false,
+    "platform": "node",
+    "target": "node16",
+    "treeshake": true,
+    "silent": true,
+    "format": [
+      "cjs",
+      "esm"
+    ]
+  },
+  "typesVersions": {
+    "*": {
+      "permissions": [
+        "dist/permissions.d.ts"
+      ]
+    }
+  },
+  "sideEffects": false
+}

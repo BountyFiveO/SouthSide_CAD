@@ -1,0 +1,88 @@
+{
+  "name": "@snailycad/utils",
+  "version": "1.52.0",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    },
+    "./callsign": {
+      "require": "./dist/callsign.js",
+      "import": "./dist/callsign.mjs"
+    },
+    "./typeguards": {
+      "require": "./dist/typeguards.js",
+      "import": "./dist/typeguards.mjs"
+    },
+    "./version": {
+      "require": "./dist/version.js",
+      "import": "./dist/version.mjs"
+    },
+    "./api-url": {
+      "require": "./dist/api-url.js",
+      "import": "./dist/api-url.mjs"
+    },
+    "./case-number": {
+      "require": "./dist/case-number.js",
+      "import": "./dist/case-number.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "typesVersions": {
+    "*": {
+      "callsign": [
+        "dist/callsign.d.ts"
+      ],
+      "typeguards": [
+        "dist/typeguards.d.ts"
+      ],
+      "version": [
+        "dist/version.d.ts"
+      ],
+      "api-url": [
+        "dist/api-url.d.ts"
+      ],
+      "case-number": [
+        "dist/case-number.d.ts"
+      ]
+    }
+  },
+  "scripts": {
+    "build": "yarn tsup",
+    "watch": "yarn tsup --watch --silent=false",
+    "typecheck": "yarn tsc --noEmit",
+    "test:watch": "yarn vitest --watch",
+    "test": "yarn vitest run"
+  },
+  "devDependencies": {
+    "@snailycad/types": "1.52.0",
+    "c8": "^7.13.0",
+    "tslib": "^2.5.0",
+    "tsup": "^6.6.3",
+    "typescript": "^5.0.2",
+    "vite": "^4.2.0",
+    "vitest": "^0.29.3"
+  },
+  "tsup": {
+    "entry": [
+      "src/**/*.ts"
+    ],
+    "dts": true,
+    "bundle": false,
+    "platform": "node",
+    "target": "node16",
+    "silent": true,
+    "treeshake": true,
+    "format": [
+      "cjs",
+      "esm"
+    ]
+  },
+  "sideEffects": false
+}
